@@ -1,0 +1,108 @@
+% ===================================================================
+% zju-homework-style-v2.sty — V15.0 (最终优化版)
+% 优化: 减小代码块底边距
+% ===================================================================
+\ProvidesPackage{zju-homework-style-v2}[2025/09/19 v15.0]
+
+% --- 必要宏包 ---
+\RequirePackage{ctex}
+\RequirePackage[a4paper, top=25mm, bottom=25mm, left=25mm, right=25mm]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{newtxtext,newtxmath}
+\RequirePackage{setspace}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath}
+\RequirePackage{booktabs}
+\RequirePackage{caption}
+\RequirePackage{array}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{xcolor}
+\RequirePackage{listings}
+\RequirePackage{enumitem}
+\RequirePackage{indentfirst}
+
+% --- 颜色定义 ---
+\definecolor{QuestionBlue}{RGB}{51,102,153}
+\definecolor{BoxBlue}{RGB}{232,240,254}
+\definecolor{codegray}{rgb}{0.95,0.95,0.95}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+% --- 全局格式设置 ---
+\setlength{\baselineskip}{22pt}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+
+% 页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE, RO]{\kaishu\zihao{5} Biomedical Signal Processing Chapter 01}
+\fancyhead[RE, LO]{\kaishu\zihao{5} Homework Week 01}
+\fancyfoot[C]{- \thepage\ -}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% 图注、表注设置
+\captionsetup[figure]{font=small, singlelinecheck=off, justification=centering, skip=10pt}
+\captionsetup[table]{font=small, singlelinecheck=off, justification=centering, skip=10pt}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+
+% 列表格式
+\setlist{itemsep=0pt, topsep=0pt}
+\setlist[enumerate,1]{
+    leftmargin=2em,
+    listparindent=\parindent,
+    parsep=\parskip
+}
+
+% --- MATLAB 代码样式定义 ---
+\lstdefinestyle{matlabstyle}{
+    language=Matlab, backgroundcolor=\color{codegray}, commentstyle=\color{codegreen},
+    keywordstyle=\color{blue}, numberstyle=\tiny\color{gray}, stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize, breakatwhitespace=false, breaklines=true,
+    captionpos=b, keepspaces=true, numbers=left, numbersep=5pt, showspaces=false,
+    showstringspaces=false, showtabs=false, tabsize=2, frame=single, rulecolor=\color{black!30},
+    belowskip=-1em % <-- 新增：减小代码块底部的外边距
+}
+
+% --- 自定义命令与环境 ---
+\newcommand{\question}[1]{\section*{\heiti\zihao{4}#1}}
+\newtcolorbox{problem}{
+    colback=BoxBlue, colframe=BoxBlue, boxsep=5pt, arc=0mm,
+    left=10pt, right=10pt, top=10pt, bottom=10pt,
+    breakable, before skip=10pt, after skip=10pt
+}
+
+% --- 扉页命令 ---
+\newcommand{\maketitlepage}{
+  \thispagestyle{empty}
+  \centering
+  \vspace*{5mm}
+  \includegraphics[width=9.2cm, keepaspectratio]{zju_logo_text.png}\par
+  \vspace{6mm}
+  \includegraphics[height=2.8cm, keepaspectratio]{zju_logo_circle.png}\par
+  \vspace{15mm}
+  {\zihao{2}\heiti Biomedical Signal Processing\par}
+  \vspace{2mm}
+  {\zihao{2}\heiti 《生物医学信号处理》\par}
+  \vspace{6mm}
+  \begin{flushright}
+    {\kaishu\zihao{3} 作业：第 一 周}
+  \end{flushright}
+  \vspace{8mm}
+  \newcommand{\infophantom}{\vphantom{生物医学工程与仪器科学学院}}
+  \begin{center}
+    \begin{tabular}{@{} >{\heiti\zihao{4}}l @{\hspace{1em}} >{\kaishu\zihao{4}}c @{}}
+      姓\quad 名： & \shortstack[c]{郑玮康\infophantom \\[3pt] \rule{8cm}{0.4pt}} \\[14pt]
+      学\quad 院： & \shortstack[c]{生物医学工程与仪器科学学院 \\[3pt] \rule{8cm}{0.4pt}} \\[14pt]
+      专\quad 业： & \shortstack[c]{生物医学工程\infophantom \\[3pt] \rule{8cm}{0.4pt}} \\[14pt]
+      学\quad 号： & \shortstack[c]{3230103090\infophantom \\[3pt] \rule{8cm}{0.4pt}} \\[14pt]
+      指导教师： & \shortstack[c]{王贤迪\infophantom \\[3pt] \rule{8cm}{0.4pt}}
+    \end{tabular}
+  \end{center}
+  \vfill
+  {\kaishu\zihao{4} 2025-09-18\par}
+  \vspace*{5mm}
+}
+
+\endinput

@@ -1,0 +1,135 @@
+% ===================================================================
+% LaTeX 作业主文件 (最终优化版)
+% ===================================================================
+
+\documentclass[12pt, a4paper, twoside]{ctexart}
+
+\AtBeginDocument{%
+  \abovedisplayskip=6pt plus 2pt minus 2pt
+  \belowdisplayskip=6pt plus 2pt minus 2pt
+  \abovedisplayshortskip=0pt plus 2pt
+  \belowdisplayshortskip=4pt plus 2pt minus 2pt
+}
+% Times New Roman 正文 + 数学字体
+\usepackage{newtxtext,newtxmath}
+
+\usepackage{zju-homework-style-v2}
+\usepackage{upgreek}
+\usepackage{float}
+\graphicspath{{figures/}}
+
+\begin{document}
+
+% --- 扉页 ---
+\begin{titlepage}
+    \maketitlepage
+\end{titlepage}
+\clearpage
+
+% --- 作业正文 ---
+
+% ==================== QUESTION 1 ====================
+\begin{problem}
+    \heiti\zihao{4}{\textcolor{QuestionBlue}{Question 1.}} (1.19) For each of the systems in Problem 1.17, determine whether the system is linear or nonlinear. Justify your answers.
+\end{problem}
+
+\vspace*{5pt}
+\subsection*{\heiti\zihao{4}Solution (b)： y(t) = e^{x(t)}}
+To check for linearity, we test the superposition principle. Let the system operator be $T\{\cdot\}$.
+Let the inputs be $x_1(t)$ and $x_2(t)$. The corresponding outputs are $y_1(t) = e^{x_1(t)}$ and $y_2(t) = e^{x_2(t)}$.
+
+Consider a linear combination of the inputs $a x_1(t) + b x_2(t)$. The output is:
+\begin{equation*}
+    T\{a x_1(t) + b x_2(t)\} = e^{a x_1(t) + b x_2(t)} = e^{a x_1(t)} e^{b x_2(t)}
+\end{equation*}
+Now consider the linear combination of the outputs:
+\begin{equation*}
+    a y_1(t) + b y_2(t) = a e^{x_1(t)} + b e^{x_2(t)}
+\end{equation*}
+Since $e^{a x_1(t)} e^{b x_2(t)} \neq a e^{x_1(t)} + b e^{x_2(t)}$, the system does not satisfy the superposition principle.
+Therefore, the system is \textbf{Nonlinear}.
+
+\vspace*{20pt}
+\subsection*{\heiti\zihao{4}Solution (e)： y(t) = $\int_0^t (t-\lambda)x(\lambda)d\lambda$}
+Let the system operator be $T\{\cdot\}$. Consider a linear combination of two inputs, $a x_1(t) + b x_2(t)$. The output is:
+\begin{align*}
+    T\{a x_1(t) + b x_2(t)\} &= \int_0^t (t-\lambda)[a x_1(\lambda) + b x_2(\lambda)]d\lambda \\
+    &= a \int_0^t (t-\lambda)x_1(\lambda)d\lambda + b \int_0^t (t-\lambda)x_2(\lambda)d\lambda \\
+    &= a T\{x_1(t)\} + b T\{x_2(t)\}
+\end{align*}
+The output from the combined input is equal to the combination of the individual outputs.
+Therefore, the system is \textbf{Linear}.
+
+
+% ==================== QUESTION 2 ====================
+
+
+\vspace*{50pt}
+\clearpage
+\begin{problem}
+    \heiti\zihao{4}{\textcolor{QuestionBlue}{Question 2.}} (1.20) For each of the systems in Problem 1.17, determine whether the system is time invariant or time varying. Justify your answers.
+\end{problem}
+
+\vspace*{5pt}
+\subsection*{\heiti\zihao{4}Solution (b)： y(t) = e^{x(t)}}
+To check for time invariance, we compare the output of a delayed input with the delayed output.
+
+\noindent\textbf{1. Output of a delayed input (Delay first, then System):}
+Let the delayed input be $x_d(t) = x(t-t_0)$. The response to this input is:
+\begin{equation*}
+    y_1(t) = e^{x_d(t)} = e^{x(t-t_0)}
+\end{equation*}
+
+\noindent\textbf{2. Delayed output (System first, then Delay):}
+Let the input be $x(t)$. The response is $y(t) = e^{x(t)}$. Delaying this output by $t_0$ gives:
+\begin{equation*}
+    y_2(t) = y(t-t_0) = e^{x(t-t_0)}
+\end{equation*}
+Since $y_1(t) = y_2(t)$, the output for a delayed input is the same as the delayed output.
+Therefore, the system is \textbf{Time-Invariant}.
+
+\vspace*{20pt}
+\subsection*{\heiti\zihao{4}Solution (e)： y(t) = $\int_0^t (t-\lambda)x(\lambda)d\lambda$}
+
+\noindent\textbf{1. Output of a delayed input (Delay first, then System):}
+Let the delayed input be $x_d(t) = x(t-t_0)$. The response to this input is:
+\begin{equation*}
+    y_1(t) = \int_0^t (t-\lambda)x_d(\lambda)d\lambda = \int_0^t (t-\lambda)x(\lambda-t_0)d\lambda
+\end{equation*}
+
+\noindent\textbf{2. Delayed output (System first, then Delay):}
+Let the input be $x(t)$. The response is $y(t) = \int_0^t (t-\lambda)x(\lambda)d\lambda$. Delaying this output by $t_0$ (replacing $t$ with $t-t_0$) gives:
+\begin{equation*}
+    y_2(t) = y(t-t_0) = \int_0^{t-t_0} (t-t_0-\lambda)x(\lambda)d\lambda
+\end{equation*}
+Since the expressions for $y_1(t)$ and $y_2(t)$ are not identical, the system's behavior depends on the specific time the input is applied (due to the fixed integration limit of 0).
+Therefore, the system is \textbf{Time-Varying}.
+
+
+% ==================== QUESTION 3 ====================
+\vspace*{50pt}
+\begin{problem}
+    \heiti\zihao{4}{\textcolor{QuestionBlue}{Question 3.}} (1.29) Determine whether the following discrete-time systems are causal or noncausal, have memory or are memoryless, are linear or nonlinear, are time invariant or time varying. Justify your answers. In the following parts, x[n] is an arbitrary input and y[n] is the response to x[n].
+\end{problem}
+
+\vspace*{5pt}
+\subsection*{\heiti\zihao{4}Solution (a)： y[n] = x[n] + 2x[n - 2]}
+\textbf{Causality:} The output $y[n]$ depends on the current input $x[n]$ and the past input $x[n - 2]$. It does not depend on any future inputs. Thus, the system is \textbf{Causal}. 
+
+\textbf{Memory:} The output depends on the past input $x[n - 2]$. Therefore, the system \textbf{has Memory}. 
+
+\textbf{Linearity:} The system satisfies the superposition principle. It is \textbf{Linear}. 
+
+\textbf{Time-Invariance:} The system's behavior does not depend on the specific time the input is applied. A delayed input $x[n-n_0]$ produces an output $x[n-n_0] + 2x[n-n_0-2]$. The delayed output $y[n-n_0]$ is also $x[n-n_0] + 2x[n-n_0-2]$. They are identical. Thus, the system is \textbf{Time-Invariant}.
+
+\vspace*{20pt}
+\subsection*{\heiti\zihao{4}Solution (c)： y[n] = nx[n]}
+\textbf{Causality:} The output $y[n]$ depends only on the current input $x[n]$. It does not depend on future inputs. Thus, the system is \textbf{Causal}.
+
+\textbf{Memory:} The output depends only on the current input $x[n]$ and not on any past inputs. Therefore, the system is \textbf{Memoryless}.
+
+\textbf{Linearity:} The system involves only scaling the input, so it satisfies the superposition principle. It is \textbf{Linear}.
+
+\textbf{Time-Invariance:} Consider a delayed input $x[n-n_0]$. The output is $n x[n-n_0]$. Now consider the delayed output, which is $y[n-n_0] = (n-n_0)x[n-n_0]$. Since $n x[n-n_0] \neq (n-n_0)x[n-n_0]$, the system is \textbf{Time-Varying}.
+
+\end{document}
